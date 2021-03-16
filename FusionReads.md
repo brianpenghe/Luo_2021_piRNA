@@ -1,4 +1,4 @@
-#These codes were used to identify vector-genome fusion reads, through three rounds of mapping
+# These codes were used to identify vector-genome fusion reads, through three rounds of mapping
 There are 6 types of reads: 
 |Yes|Yes|Yes|Yes|Yes|Yes|
 |---|---|---|---|---|---|
