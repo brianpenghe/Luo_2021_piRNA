@@ -2,8 +2,6 @@
 ## Check sequence quality using FastQC
 ```
 mkdir -p FastQCk6
-mkdir -p FastQCk6/Unique
-mkdir -p FastQCk6/Multi
 FastQC-0.11.3/fastqc all.fastq -o FastQCk6 -k 6
 ```
 
