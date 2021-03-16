@@ -3,6 +3,7 @@ There are 6 types of reads:
 |Yes|Yes|Yes|Yes|Yes|Yes|
 |---|---|---|---|---|---|
 |Junk|Vector|Genome|Vector-junk|Genome-junk|Genome-vector|
+
 ## Round 1: Get reads that contain vector sequences
 ### Extract the 20bp at 5' end
 ```
@@ -23,6 +24,7 @@ Now we have:
 |No|Yes|No|Yes|No|Yes|
 |---|---|---|---|---|---|
 |~~Junk~~|Vector|~~Genome~~|Vector-junk|~~Genome-junk~~|Genome-vector|
+
 ## Round 2: Get reads that aren't just about vector sequences
 ### Map the previously selected reads to vector again, but with full length
 ```
@@ -33,6 +35,7 @@ Now we have:
 |No|No|No|Yes|No|Yes|
 |---|---|---|---|---|---|
 |~~Junk~~|~~Vector~~|~~Genome~~|Vector-junk|~~Genome-junk~~|Genome-vector|
+
 ## Round 3: Get reads that contain genome sequences
 ### Extract the 20bp at 3' end
 ```
@@ -47,7 +50,7 @@ samtools-0.1.16/bin/samtools sort - 20threeprime.dm3.bam
 samtools-0.1.16/bin/samtools index 20threeprime.dm3.bam.bam
 ```
 Now we have:
-|No|No|No|No|No|Yes||
+|No|No|No|No|No|Yes|
 |---|---|---|---|---|---|
 |~~Junk~~|~~Vector~~|~~Genome~~|~~Vector-junk~~|~~Genome-junk~~|Genome-vector|
 
