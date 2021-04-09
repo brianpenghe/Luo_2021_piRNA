@@ -92,10 +92,12 @@ while read bam
 ```
 ## Inspect ping-pong signature
 ```
+#The signature.py program can be downloaded from http://drosophile.org/GEDlab/?page_id=730
+#reference https://www.researchgate.net/publication/263054411_Computing_siRNA_and_piRNA_overlap_signatures
 while read bam
   do 
     samtools view -h $bam > $bam.sam &&
-    python2 ~/190428YichengpiRNA/signature_plot/signature.py $bam.sam 23 29 1 29 $bam.pingpong & 
+    python2 signature.py $bam.sam 23 29 1 29 $bam.pingpong & 
   done <<<$(ls *23_29mer.{GFP_SV40,UBIG}.vectoronly.dup.bam)
 ```
 ## Calculate read counts per equal-sized bins in transposable elements
