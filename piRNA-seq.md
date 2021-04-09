@@ -141,12 +141,12 @@ for i in 10 100 1000
 while read bam
   do 
     samtools view -h $bam  chr2R:2144349-2386719 > $bam.sam && 
-    python2 ~/190428YichengpiRNA/signature_plot/signature.py $bam.sam 23 29 1 29 $bam.cluster_42AB.pingpong & 
+    python2 signature.py $bam.sam 23 29 1 29 $bam.cluster_42AB.pingpong & 
   done<<<$(ls *.dm3.23_29mer.unique.dup.bam)
 
 while read bam
   do 
     samtools view -h $bam  chrX:21392175-21431907 > $bam.sam &&
-    python2 ~/190428YichengpiRNA/signature_plot/signature.py $bam.sam 23 29 1 29 $bam.cluster_20A.pingpong & 
+    python2 signature.py $bam.sam 23 29 1 29 $bam.cluster_20A.pingpong & 
   done<<<$(ls *.dm3.23_29mer.unique.dup.bam)
 ```   
