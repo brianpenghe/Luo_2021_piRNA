@@ -4,7 +4,7 @@ There are 6 types of reads:
 |---|---|---|---|---|---|
 |Junk|Vector|Genome|Vector-junk|Genome-junk|Genome-vector|
 
-*Note that junk may be able to map to both genome and vector*
+*Assuming that junk may not be able to map to either genome and vector*
 
 ## Round 1: Get reads that contain vector sequences
 ### Extract the 20bp at 5' end
