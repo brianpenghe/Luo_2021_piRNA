@@ -5,19 +5,8 @@ mkdir -p FastQCk6
 FastQC-0.11.3/fastqc all.fastq -o FastQCk6 -k 6
 ```
 ## Adapter trimming
-### Use cutadapt to cut universal sequences in adapters
 ```
-cutadapt -a CTGTCTCTTATACAC all.fastq | \
-cutadapt -a CGTATGCCGTCTTCTGCTTG - | \
-cutadapt -g TGCCGTCTTCTGCTTG - | \
-cutadapt -g GGTAACTTTGTGTTT - | \
-cutadapt -g CTTTGTGTTTGA - | \
-cutadapt -a CACTCGTCGGCAGCGTTAGATGTGTATAAG - > trimmedfastq
-```
-### Use Trimmomatic to trim barcode-containing adapters
-```
-java -jar Trimmomatic-0.33/trimmomatic-0.33.jar SE -threads 4 -trimlog trimmomatic.log trimmedfastq alltrimmedfastq \
-ILLUMINACLIP:AllAdaptors.fa:2:30:10 MAXINFO:35:0.9 MINLEN:20
+cutadapt -a AGATCGGAAGAGCACACGTCT -m 15 all.fastq > alltrimmedfastq
 ```
 ### Check sequence quality again using FastQC
 ```
