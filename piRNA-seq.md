@@ -139,3 +139,6 @@ while read bam
     python2 signature.py $bam.sam 23 29 1 29 $bam.cluster_20A.pingpong & 
   done<<<$(ls *.dm3.23_29mer.unique.dup.bam)
 ```   
+
+## Phasing analysis
+A [jupyter notebook](https://github.com/brianpenghe/Luo_2021_piRNA/blob/main/Phasing/220522YichengPhasing.ipynb) is included in this repository to show how phasing analysis can be done.
