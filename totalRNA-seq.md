@@ -52,7 +52,7 @@ samtools index dm6.50merAligned.toTranscriptome.out.sorted.bam
 ## Map reads on vectors
 ```
 bowtie UBIG -p 8 --chunkmbs 1024 -v 0 -a -m 1 -t --sam-nh --best --strata -q --sam \
-    allfastqrRNAUnmapped50.fastq --al dm6.50mer.UBIG.vectoronly.fastq | \
+    allfastqrRNAUnmapped50.fastq -k 1 --al dm6.50mer.UBIG.vectoronly.fastq | \
     samtools view -F 4 -bT UBIG.fa - | samtools sort - dm6.50mer.UBIG.vectoronly.dup
 ```
 
