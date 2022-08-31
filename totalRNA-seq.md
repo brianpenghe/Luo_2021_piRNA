@@ -26,6 +26,7 @@ Next, reads are mapped against ribosomal RNA sequence references. The unmapped r
 bowtie dmel_rRNA_unit -p 8 -v 2 -k 1 --best -t --sam-nh -q \
     allfastq50 --un Unmapped50.fastq allfastq.rRNA.mapped50.map
 ```
+For more about output files, please read the manual of [bowtie](http://bowtie-bio.sourceforge.net/manual.shtml).
 
 ## Map to transcriptome
 We use STAR here for alignment, considering splicing.
@@ -41,9 +42,46 @@ STAR --genomeDir dm6/ --readFilesIn Unmapped50.fastq --runThreadN 8 \
      --sjdbScore 1 --limitBAMsortRAM 30000000000 --outFileNamePrefix dm6.50mer \
      --outSAMstrandField intronMotif
 ```
+For more about output files, please read the manual of [STAR](https://github.com/alexdobin/STAR).
 
 Then sort and index the alignment files
 ```
 samtools sort dm6.50merAligned.toTranscriptome.out.bam dm6.50merAligned.toTranscriptome.out.sorted
 samtools index dm6.50merAligned.toTranscriptome.out.sorted.bam
 ```
+## Map reads on vectors
+
+
+# Further process
+## Generate bedgraph coverage files
+```
+STAR --runMode inputAlignmentsFromBAM --inputBAMfile dm6.50merAligned.sortedByCoord.out.bam \
+     --outWigType bedGraph --outWigStrand Unstranded --outFileNamePrefix \
+     dm6.50merAligned.sortedByCoord --outWigReferencesPrefix chr
+```
+## Generate read coverage profiles
+```
+python /woldlab/castor/home/sau/code/gene_coverage_wig_gtf.py Drosophila_melanogaster.BDGP6.32.106.fixed.gtf \
+     dm6.50merAligned.sortedByCoordSignal.Unique.str1.out.bgc 1000 dm6.50merAligned.sortedByCoord.coverage
+```
+[gene_coverage_wig_gtf](https://github.com/brianpenghe/gtfgff-scripts/blob/master/gene_coverage_wig_gtf.py) was written by Georgi Marinov and Sean Upchurch.
+
+## Make bigWig files
+
+```
+wigToBigWig -clip dm6.50merAligned.sortedByCoordSignal.Unique.str1.out.bg dm6.chrom.sizes 、
+    dm6.50merAligned.sortedByCoordSignal.Unique.str1.out.bg.bigWig
+wigToBigWig -clip dm6.50merAligned.sortedByCoordSignal.UniqueMultiple.str1.out.bg dm6.chrom.sizes 、
+    dm6.50merAligned.sortedByCoordSignal.UniqueMultiple.str1.out.bg.bigWig
+```
+
+## Transcript quantification
+We use Rsem to quantify the transcript abundance.
+```
+rsem-calculate-expression --bam --estimate-rspd --calc-ci --seed 12345 -p 8 \
+    --no-bam-output --ci-memory 30000  --temporary-folder temp 
+    dm6.50merAligned.toTranscriptome.out.sorted.bam dm6/rsem
+    dm6.50merAligned.toTranscriptome.out.sorted.rsem
+```
+For more about output files, please read the manual of [Rsem](https://github.com/deweylab/RSEM).
+
