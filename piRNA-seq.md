@@ -27,7 +27,7 @@ FastQC-0.11.3/fastqc allfastq21_21 -o FastQCk6 -k 6
 ## Map to genome
 ```
 bowtie genome/bowtie-indexes/dm3 -p 8 --chunkmbs 1024 -v 0 -a -m 1 -t --sam-nh --best --strata -q --sam \
-allfastq23_29 --al dm3.23_29mer.unique.fastq --un dm3.23_29_unmapped.fastq --max dm3.23_29_multi.fastq | \
+allfastq23_29 -k 1 --al dm3.23_29mer.unique.fastq --un dm3.23_29_unmapped.fastq --max dm3.23_29_multi.fastq | \
 samtools-0.1.8/samtools view -bT  genome/bowtie-indexes/dm3.fa - | \
 samtools-0.1.16/bin/samtools sort - dm3.23_29mer.unique.dup
 samtools-0.1.16/bin/samtools index dm3.23_29mer.unique.dup.bam
@@ -41,7 +41,7 @@ samtools-0.1.16/bin/samtools index dm3.23_29mer.unique.dup.nochrM.bam
 ## Map to vector
 ```
 bowtie genomes/YichengVectors/42AB_UASG -p 8 --chunkmbs 1024 -v 0 -a -m 1 -t --sam-nh --best --strata -q --sam \
-allfastq23_29 --al dm3.23_29mer.42AB_UASG.vectoronly.fastq | \
+allfastq23_29 -k 1 --al dm3.23_29mer.42AB_UASG.vectoronly.fastq | \
 samtools-0.1.8/samtools view -bT genomes/YichengVectors/42AB_UASG.fa - | \
 samtools-0.1.16/bin/samtools sort - dm3.23_29mer.42AB_UASG.vectoronly.dup
 samtools-0.1.16/bin/samtools index dm3.23_29mer.42AB_UASG.vectoronly.dup.bam
