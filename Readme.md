@@ -8,4 +8,4 @@
 
 [4. Total RNA-seq codes](https://github.com/brianpenghe/Luo_2021_piRNA/blob/main/totalRNA-seq.md)
 
-[5. RIP-seq uses the adaptor trimming of the piRNA-seq codes and followed by a Total RNA-seq pipeline]
+[5. RIP-seq uses the adaptor trimming of the piRNA-seq codes and followed by a Total RNA-seq pipeline]()
