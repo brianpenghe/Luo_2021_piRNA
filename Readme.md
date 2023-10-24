@@ -1,4 +1,7 @@
-# This repository contains the codes used in [the paper](https://www.biorxiv.org/content/10.1101/2022.02.08.479612v1.abstract) 
+# This repository contains the codes used in [the paper](https://www.sciencedirect.com/science/article/pii/S1097276523007979?dgcid=coauthor)
+
+![image](https://github.com/brianpenghe/Luo_2021_piRNA/assets/4110443/6bf517bb-6a27-479a-8712-25370b9ef941)
+
 
 [1. ChIP-seq codes](https://github.com/brianpenghe/Luo_2021_piRNA/blob/main/ChIP-seq.md)
 
